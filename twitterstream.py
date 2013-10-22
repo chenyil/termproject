@@ -1,5 +1,6 @@
 import oauth2 as oauth
 import urllib2 as urllib
+import json
 
 # See Assignment 1 instructions or README for how to get these credentials
 access_token_key = "1896895741-H5bfajkkwq0WnpOyKPTFRNB0jfrFObZqCjNz5PW"
@@ -55,6 +56,18 @@ def fetchsamples(s):
         return 0
     file_object = open('out.txt','w')
     parameters = []
+    '''
+    turl="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="+s+"&count=1"
+    Tresponse = twitterreq(turl, "GET", parameters)
+    for line in Tresponse:
+        buff=json.loads(line.strip())
+        for item in buff:
+            idd=item['id_str']
+    surl="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="+s+"&max_id="+idd
+    response = twitterreq(surl, "GET", parameters)
+    for line in response:
+        file_object.write(line.strip())
+    '''
     surl="https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="+s+"&count=200"
     response = twitterreq(surl, "GET", parameters)
     for line in response:
