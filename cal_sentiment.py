@@ -22,13 +22,13 @@ hoursen =[0.0]*24
 hourcount=[0.0]*24
 houremo = [0.0]*24
 hours=[0]*24
-hoursa=[0]*24
+
 
 weeksen=[0.0]*7
 weekcount=[0.0]*7
 weekemo=[0.0]*7
 weekday=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-weekdaynum=[0]*7
+
 
 def InitiatDictionary():
     fp="AFINN-111.txt"
@@ -41,9 +41,23 @@ def InitiatDictionary():
 
     for i in range(len(hours)):
         hours[i]=i
-        hoursa[i]=i*5
-    for i in range(len(weekday)):
-        weekdaynum=i
+
+def clearBuffer():
+    global filenames
+    filenames = [".\Images\image.jpg"]
+    global hoursen,hurcount,houremo,weeksen,weekcount,weekemo
+
+    hoursen =[0.0]*24
+    hourcount=[0.0]*24
+    houremo = [0.0]*24
+
+    weeksen=[0.0]*7
+    weekcount=[0.0]*7
+    weekemo=[0.0]*7
+
+    print(weeksen)
+    print(weekemo)
+    print(weekcount)
 
 def clearIMGBuffer():
     global filenames
@@ -169,7 +183,7 @@ def HandleWeek(x,sen):
 
      for i in range(len(weekday)):
         if(weekday[i]==x):
-            print x
+            #print x
             weekcount[i]+=1
             weeksen[i]+=sen
             if sen<0:
@@ -194,13 +208,14 @@ def finalCal():
             hoursen[i]=hoursen[i]/hourcount[i]
             houremo[i]=houremo[i]/hourcount[i]
         #print("%2d %.2f" %(i,hoursen[i]))
-    print(weeksen)
-    print(weekemo)
-    print(weekcount)
+
     for i in range(len(weekcount)):
         if weekcount[i]!=0:
             weeksen[i]=weeksen[i]/weekcount[i]
             weekemo[i]=weekemo[i]/weekcount[i]
+    print(weeksen)
+    print(weekemo)
+    print(weekcount)
         #print("%2d %.2f" %(i,weeksen[i]))
 
 def lines(gp):

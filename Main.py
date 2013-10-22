@@ -32,6 +32,7 @@ class UpperPanel(wx.Panel):
         s=self.textbox.GetValue()
         if twitterstream.fetchsamples(s)==1:
         #    cal_sentiment.drawbarchart()
+            cal_sentiment.clearBuffer()
             cal_sentiment.lines("out.txt")
         self.GetParent().GetParent().lowerpanel.repaint()
 
